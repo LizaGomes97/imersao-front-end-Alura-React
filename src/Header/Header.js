@@ -1,10 +1,19 @@
-import React from "react";
+import React, {useState} from "react";
 import './Header.css';
 import smallRight from "../assets/icons/small-right.png";
 import smallLeft from "../assets/icons/small-left.png";
 import search from "../assets/icons/search.png";
 
-const Header = () => {
+const Header = ({onSearch}) => {
+    const [searchTerm, setSearchTerm] = useState("");
+
+    //funçao que chama quando o usuario digita
+    const handleSearch = (event) => {
+        const value = event.target.value.toLowerCase().trim();
+        setSearchTerm(value);
+        onSearch(value);//chama a funçao recebida via props
+    };
+
     return (
         <nav className="header__navigation">
         <div className="navigation">
